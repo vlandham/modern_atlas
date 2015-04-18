@@ -1,0 +1,37 @@
+{
+  "name": "modern_atlas",
+  "version": "0.0.1",
+  "description": "Retro atlas for fun",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vlandham/modern_atlas.git"
+  },
+  "keywords": [
+    "visualization",
+    "book",
+    "maps",
+    "data"
+  ],
+  "author": "Jim V",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vlandham/modern_atlas/issues"
+  },
+  "homepage": "https://github.com/vlandham/modern_atlas",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-bg-shell": "^2.3.1",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-compress": "^0.13.0",
+    "grunt-contrib-concat": "^0.5.0",
+    "grunt-contrib-connect": "^0.9.0",
+    "grunt-contrib-copy": "^0.7.0",
+    "grunt-contrib-jade": "^0.14.1",
+    "grunt-contrib-jshint": "^0.11.0",
+    "grunt-contrib-requirejs": "^0.4.4",
+    "grunt-contrib-stylus": "^0.20.0",
+    "grunt-contrib-symlink": "^0.3.0",
+    "grunt-contrib-uglify": "^0.7.0",
+    "grunt-contrib-watch": "^0.6.1"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "name": "modern_atlas",
+  "version": "0.0.0",
+  "homepage": "https://github.com/vlandham/modern_atlas",
+  "authors": [
+    "Jim V"
+  ],
+  "description": "Retro atlas for fun",
+  "keywords": [
+    "visualization",
+    "data"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "pure": "~0.5.0",
+    "d3": "~3.5.5",
+    "queue-async": "~1.0.7",
+    "topojson":"~1.6.19",
+    "backbone": "~1.1.2",
+    "lodash-template-loader": "~0.1.9",
+    "requirejs": "~2.1.16",
+    "jquery": "~2.1.3",
+    "lodash": "~2.4.1",
+    "bluebird": "~2.9.8"
+  }
+}
