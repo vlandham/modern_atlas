@@ -13,7 +13,7 @@ define(function(require) {
     _render: function() {
       var self = this;
       this.$el.html(this.template());
-      var vis = d3.select(self.$el.find('.vis')[0]);
+      var vis = d3.select(self.$el.find('.map')[0]);
       vis.datum([])
         .call(map());
 

@@ -40,14 +40,16 @@ define(function(require) {
           .defer(d3.json, "assets/data/us-counties.json")
           .await(show);
 
-        show();
 
       });
     };
 
-    function show() {
-      g.append("text")
-        .text("hello");
+    function show(error, us) {
+      console.log(error);
+      var states = topojson.mesh(us, us.objects.states, function(a, b) {
+          return a.id !== b.id;
+        });
+
       g.append("g")
         .attr("class", "counties")
         .selectAll("path")
@@ -55,9 +57,14 @@ define(function(require) {
         .enter()
         .append("path")
         .attr("id", function(d) {
-          return d.id + " " + countyId[d.id];
+          return d.id;
         })
-        .attr("d", path)
+        .attr("d", path);
+
+      g.append("path")
+        .datum(states)
+        .attr("class", "states")
+        .attr("d", path);
     }
 
 
