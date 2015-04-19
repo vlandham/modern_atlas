@@ -7,25 +7,34 @@ define(function(require) {
     var height = 600;
     var width = 800;
 
-    var projection = d3.geo.albersUsa()
-      .scale(width / 0.75)
+    var projection = d3.geo.albers()
+      .scale(width / 0.7)
       .translate([width / 2, height / 2]);
 
     var path = d3.geo.path()
       .projection(projection);
 
+    var graticule = d3.geo.graticule();
+    console.log(graticule.extent());
+    graticule.extent([[-180,-80],[180,80]]);
+    graticule.step([2,2]);
+    console.log(graticule.extent());
+
     var data = [];
     var svg = null;
-    // main group to render in
     var g = null;
 
 
-    var margins = {top:20, left:10, bottom:20, right:10};
+    var margins = {top:20, left:20, bottom:20, right:20};
 
     var chart = function(selection) {
       selection.each(function(rawData) {
         svg = d3.select(this).selectAll("svg").data([data]);
         svg.enter().append("svg");
+
+        // var defs = svg.append("defs");
+
+
         svg.append("g");
 
         svg.attr("width", width + margins.left + margins.right);
@@ -37,33 +46,46 @@ define(function(require) {
           .attr("transform", "translate(" + margins.left + "," + margins.top + ")");
 
         queue()
-          .defer(d3.json, "assets/data/us-counties.json")
+          .defer(d3.json, "assets/data/us.json")
+          .defer(d3.json, "assets/data/na_no_us.json")
           .await(show);
 
 
       });
     };
 
-    function show(error, us) {
+    function show(error, us, world) {
       console.log(error);
       var states = topojson.mesh(us, us.objects.states, function(a, b) {
-          return a.id !== b.id;
+          // return a.id !== b.id;
+        return true;
         });
 
       g.append("g")
         .attr("class", "counties")
         .selectAll("path")
-        .data(topojson.feature(us, us.objects.counties).features)
-        .enter()
-        .append("path")
-        .attr("id", function(d) {
-          return d.id;
-        })
-        .attr("d", path);
+         .data(topojson.feature(us, us.objects.counties).features)
+         .enter()
+         .append("path")
+         .attr("id", function(d) {
+           return d.id;
+         })
+         .attr("d", path);
+
 
       g.append("path")
         .datum(states)
         .attr("class", "states")
+        .attr("d", path);
+
+      g.append("path")
+        .datum(topojson.mesh(world, world.objects.countries))
+        .attr("class", "states")
+        .attr("d", path);
+
+      g.append("path")
+        .datum(graticule)
+        .attr("class", "graticule")
         .attr("d", path);
     }
 
